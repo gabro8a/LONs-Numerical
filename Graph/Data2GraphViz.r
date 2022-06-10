@@ -10,7 +10,7 @@ args = commandArgs(trailingOnly = TRUE)
 
 if (length(args) == 0) {
   stop(
-    "Use: Rscript Data2GraphViz.r input_file output_folder \n  Rscript Data2GraphViz.r ../Result/SpreadSpectrumRadarPollyPhase/data_filtered/data_SpreadSpectrumRadarPollyPhasen13_p1.256600.txt ../Result/SpreadSpectrumRadarPollyPhase/LONs/",
+    "Use: Rscript Data2GraphViz.r input_file output_folder \n  Example: Rscript Data2GraphViz.r ../Result/SpreadSpectrumRadarPollyPhase/data_filtered/data_SpreadSpectrumRadarPollyPhasen13_p1.256600.txt ../Result/SpreadSpectrumRadarPollyPhase/LONs/",
     call. = FALSE
   )
 } else {
@@ -197,7 +197,7 @@ E(LON)$color = pi_ecol
 ################### SELECT THE MODEL AND THE TYPE OF VISUALIZATION
 
 # 2D Visualization
-png(file = paste0(output_folder, '_lon.png'))
+png(file = paste0(output_folder, 'lon.png'))
 plot(
   LON,
   vertex.label = NA,
@@ -207,7 +207,7 @@ plot(
   layout = lonlay
 )
 dev.off()
-png(file = paste0(output_folder, '_cmlon.png'))
+png(file = paste0(output_folder, 'cmlon.png'))
 plot(
   CMLON,
   vertex.label = NA,
@@ -239,7 +239,9 @@ rgl.viewpoint(180, 90)
 par3d(windowRect = c(20, 30, 800, 800))
 # saving
 snapshot3d(paste0(output_folder, '3D_lon.png'), fmt = 'png')
-# # saving gif of rotation
+
+
+# saving gif of rotation
 M <-
   plotNet3D(
     N = LON,
@@ -258,7 +260,7 @@ par3d(windowRect = c(20, 30, 800, 800))
 movie3d(
   spin3d(rpm = 3),
   duration = 10,
-  movie = 'lon_',
+  movie = 'lon',
   dir = output_folder,
   clean = TRUE
 )
@@ -278,20 +280,20 @@ rgl.viewpoint(180, 90)
 # size of image
 par3d(windowRect = c(20, 30, 800, 800))
 # saving
-rgl.snapshot(paste0(output_folder, '_3D_cmlon.png'), fmt = 'png')
+snapshot3d(paste0(output_folder, '3D_cmlon.png'), fmt = 'png')
 # rotating to nice positioning
 rgl.viewpoint(180, 90)
 
 
-# # saving gif of rotation
+# saving gif of rotation
 M <-
   plotNet3D(
     N = CMLON,
-    z = zcoord,
-    ewidth = ew,
-    vsize = vs,
+    z = zcoord2,
+    ewidth = ew2,
+    vsize = vs2,
     asize = 1,
-    mylay = lonlay
+    mylay = lonlay2
   )
 # rotating to nice positioning
 rgl.viewpoint(180, 90)
@@ -302,7 +304,7 @@ par3d(windowRect = c(20, 30, 800, 800))
 movie3d(
   spin3d(rpm = 3),
   duration = 10,
-  movie = 'cmlon_',
+  movie = 'cmlon',
   dir = output_folder,
   clean = TRUE
 )
