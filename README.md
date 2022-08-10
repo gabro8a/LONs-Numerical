@@ -43,7 +43,7 @@ The code is structured into 5 folders as follows:
 3. **stepSizeTuning**
 
    - Python script to select  a suitable step size (perturbation strength) for Basin Hopping algorithm following the idea of varying the step size until half of the steps attempted escape the starting basin of attraction. (page 6 of the paper).
-   - For help call `./stepSizeTuning.py --help` 
+   - For help call `python3 stepSizeTuning.py --help` 
 
 4. **Experiments**
 
